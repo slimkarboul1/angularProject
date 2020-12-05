@@ -1,0 +1,21 @@
+<header>
+    <div class="container text-center">
+        <h1>Welcome to my quiz app</h1>
+        <p class="lead">Created with angular</p>
+    </div>
+</header>
+
+<form>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="form-group col-6">
+            <label>
+                <dt>Enter your username here to start the quiz !</dt>
+            </label>
+            <input name="username" type="text" class="form-control" [ngModel]="username" #userameinput
+                (keyup)="onChange(userameinput.value)">
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary" [routerLink]="'/quiz'">Submit</button>
+    </div>
+</form>

@@ -1,0 +1,45 @@
+<div class="col-12 col-md-10 col-lg-8">
+  <form class="card card-sm">
+    <div class="card-body row no-gutters align-items-center">
+      <div class="col-auto">
+        <i class="fas fa-search h4 text-body"></i>
+      </div>
+
+      <div class="col">
+        <input class="form-control form-control-lg form-control-borderless" type="search"
+          placeholder="Search question by name" name="search" [(ngModel)]="searchName">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary ml-5" [routerLink]="'/addQuestion'"> Add question</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manage questions</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fas fa-plus fa-2x"
+            aria-hidden="true"></i></a></span>
+      <table class="table table-bordered table-responsive-md table-secondary table-bordered text-center table-hover">
+        <thead>
+          <tr class="table-primary">
+            <th class="text-center">Questions</th>
+            <th class="text-center">Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let question of listQuestion | questionFilter:searchName">
+            <td class="pt-3-half" contenteditable="false">{{question.name}}</td>
+            <td class="text-center">
+              <span class="table-remove mr-4"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"
+                  (click)="deleteQuestion(question.id)">Remove</button></span>
+              <span class="table-remove"><button type="button" class="btn btn-success btn-rounded btn-sm my-0"
+                  [routerLink]="['/updateQuestion', question.id]">Update</button></span>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>

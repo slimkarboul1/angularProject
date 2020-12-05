@@ -1,0 +1,59 @@
+<h3 class="title text-center font-weight-bold text-uppercase mt-5 mb-5"> Update question</h3>
+<div class="container">
+    <form class="mx-5 " title="Add question" #f="ngForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="QuestionName">Qeustion id</label>
+                <input name="quesitonId" type="number" class="form-control" placeholder="Questioon id"
+                    [(ngModel)]="question.id" disabled value="{{question.id}}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="QuestionName">Qeustion Name</label>
+                <input name="questionName" type="text" class="form-control" placeholder="Questioon name"
+                    [(ngModel)]="question.name" #name="ngModel" required minlength=10>
+
+
+                <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+                    <div *ngIf="name.errors.required">name is required</div>
+                    <div *ngIf="name.errors.minlength">name min length is 10 characters</div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="form-row">
+            <h3 class="title text-center font-weight-bold text-uppercase mx-auto">Options</h3>
+            <!--<button class="btn btn-warning mx-auto">Add Option</button>-->
+        </div>
+        <hr>
+
+        <div class="form-group col-md-6">
+            <div *ngFor="let option of question.options">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="optionId">Option Id</label>
+                        <input class="form-control" type="number" name="optionId" value="{{option.id}}" disabled
+                            [(ngModel)]="option.id">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="OptionName">Option Name</label>
+                        <input clas="form-control" type="text" name="optionName" value="{{option.name}}"
+                            [(ngModel)]="option.name">
+                    </div>
+                </div>
+
+                <label for="isAnswer" class="font-weight-bold">Is Answere</label>
+                <select class="form-control" name="optionAnswser" [(ngModel)]="option.isAnswer">
+                    <option *ngFor="let answer of Choices" [ngValue]="answer">
+                        {{ answer}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="text text-center mx-auto">
+                <button type="submit" class="btn btn-primary" (click)="updateQuestion(question.id)"
+                    [routerLink]="'/manageQuestions'" [disabled]="f.invalid">Update question</button>
+            </div>
+        </div>
+    </form>
+</div>

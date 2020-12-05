@@ -1,0 +1,73 @@
+<h3 class="title text-center font-weight-bold text-uppercase mt-5 mb-5"> Add question</h3>
+<div class="container">
+    <form class="mx-5 " title="Add question" [formGroup]="questionForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="font-weight-bold" for="QuestionName">Question id</label>
+                <input type="number" class="form-control" placeholder="Questioon id" formControlName="id"
+                    [(ngModel)]="questionId">
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="questionForm.controls['id'].errors && questionForm.controls['id'].touched">
+                    ID is a required field
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class="font-weight-bold" for="QuestionName">Question Name</label>
+                <input type="text" class="form-control" placeholder="Questioon name" formControlName="name">
+
+
+                <div class="alert alert-danger"
+                    *ngIf="questionForm.get('name').errors && questionForm.get('name').touched">
+                    <div *ngIf="questionForm.get('name').hasError('required')">name is required</div>
+                    <div *ngIf="questionForm.get('name').hasError('minLength')">name min length is 10 characters</div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="form-row">
+            <h3 class="title text-center font-weight-bold text-uppercase mx-auto">Options</h3>
+            <button (click)="addOptions()" class="btn btn-warning mx-auto">Add Option</button>
+        </div>
+        <hr>
+        <div class="form-row">
+            <div formArrayName="options">
+                <div *ngFor="let option of getOptions.controls; let i = index">
+                    <div [formGroupName]="i">
+                        <h4>Option {{i}}</h4>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="optionId" class="font-weight-bold">Option ID</label>
+                                <input type="number" class="form-control" placeholder="Option ID" formControlName="id">
+                            </div>
+                            
+
+                            <input type="number" class="form-control" placeholder="question Id"
+                                formControlName="questionId" value="{{questionId}}" hidden>
+            
+                            <div class="form-group col-md-6">
+                                <label for="optionName" class="font-weight-bold">Option Name</label>
+                                <input type="text" class="form-control" placeholder="Option name"
+                                    formControlName="name">
+                            </div>
+                        </div>
+
+                        <label for="isAnswer" class="font-weight-bold">Is Answere</label>
+                        <select formControlName="isAnswer" class="form-control">
+                            <option *ngFor="let answer of Choices" [ngValue]="answer">
+                                {{ answer}}
+                            </option>
+                        </select>
+
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="text text-center mx-auto">
+            <button type="submit" class="btn btn-primary" (click)="AddQuestion()" [routerLink]="'/manageQuestions'" [disabled]="questionForm.invalid">Add
+                question</button>
+        </div>
+    </form>
+</div>
