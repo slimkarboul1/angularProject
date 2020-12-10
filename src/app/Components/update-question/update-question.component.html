@@ -1,5 +1,5 @@
 <h3 class="title text-center font-weight-bold text-uppercase mt-5 mb-5"> Update question</h3>
-<div class="container">
+<div class="container my-5">
     <form class="mx-5 " title="Add question" #f="ngForm">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -28,16 +28,16 @@
         <hr>
 
         <div class="form-group col-md-6">
-            <div *ngFor="let option of question.options">
+            <div *ngFor="let option of question.options; let i=index">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="optionId">Option Id</label>
-                        <input class="form-control" type="number" name="optionId" value="{{option.id}}" disabled
+                        <input id="{{option.id}}" class="form-control" type="number" name="optionId{{i}}"  disabled
                             [(ngModel)]="option.id">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="OptionName">Option Name</label>
-                        <input clas="form-control" type="text" name="optionName" value="{{option.name}}"
+                        <input clas="form-control" type="text" name="optionId{{i}}"
                             [(ngModel)]="option.name">
                     </div>
                 </div>
@@ -45,13 +45,13 @@
                 <label for="isAnswer" class="font-weight-bold">Is Answere</label>
                 <select class="form-control" name="optionAnswser" [(ngModel)]="option.isAnswer">
                     <option *ngFor="let answer of Choices" [ngValue]="answer">
-                        {{ answer}}
+                        {{ option.isAnswer}}
                     </option>
                 </select>
             </div>
 
-            <div class="text text-center mx-auto">
-                <button type="submit" class="btn btn-primary" (click)="updateQuestion(question.id)"
+            <div class="text text-center">
+                <button type="submit" class="btn btn-primary mt-5 mb-5" (click)="updateQuestion(question.id)"
                     [routerLink]="'/manageQuestions'" [disabled]="f.invalid">Update question</button>
             </div>
         </div>

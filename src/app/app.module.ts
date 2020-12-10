@@ -13,6 +13,7 @@ import { ManageQuestionsComponent } from './Components/manage-questions/manage-q
 import { UpdateQuestionComponent } from './Components/update-question/update-question.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { questionFilter } from './filter/question-filter';
+import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { questionFilter } from './filter/question-filter';
     ManageQuestionsComponent,
     UpdateQuestionComponent,
     PageNotFoundComponent,
-    questionFilter
+    questionFilter,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

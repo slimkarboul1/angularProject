@@ -25,4 +25,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+   HeaderController($scope, $location) 
+{ 
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
+}
+
 }

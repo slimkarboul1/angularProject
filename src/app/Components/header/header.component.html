@@ -1,25 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" routerLink="">Quiz App</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+
+<nav class="navbar navbar-expand-lg navbar-mainbg" ng-controller="HeaderController">
+  <a class="navbar-brand navbar-logo" [routerLink]="'/  '">Quiz app</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <i class="fas fa-bars text-white"></i>
   </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="manageQuestions">Manage Question</a>
-      </li>
-    </ul>
-  </div>
-  <div class="navbar-form navbar-right">
-    <a class="text-light" [routerLink]="'/'"><strong>{{childData}}</strong></a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+          <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+          <li class="nav-item " ng-class="{ active: isActive('/')}">
+              <a class="nav-link" [routerLink]="'/'"><i class="far fa-clone"></i>Home</a>
+          </li>
+          <li class="nav-item" ng-class="{ active: isActive('/manageQuestions')}">
+              <a class="nav-link" routerLink="manageQuestions"><i class="far fa-calendar-alt"></i>Manage quiz</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="'/'"><i class="far fa-copy"></i><strong>{{childData}}</strong></a>
+          </li>
+      </ul>
   </div>
 </nav>
-
-
 <!-- this test is to check if i am not in the home page i will not show the home component-->
 <div [hidden]="hideElement">
   <app-home (childEvent)="childData=$event"></app-home>

@@ -26,12 +26,14 @@ export class QuizComponent implements OnInit {
   constructor(private questionService : QuestionService, private loc: Location) { }
 
   ngOnInit(): void {
+    
     this.questionService.getQuestions().subscribe(
-      (data:Question[]) =>this.listQuestions= data
-    );
-
-    //this.pager.count = this.listQuestions.length;
-    this.pager.count = 12;
+      (data:Question[]) => {this.listQuestions= data;
+        console.log(this.listQuestions.length)
+        this.pager.count = this.listQuestions.length;
+      
+      });
+    
     this.startTime = new Date();
     this.ellapsedTime = '00:00';
     this.timer = setInterval(() => { this.tick(); }, 1000);

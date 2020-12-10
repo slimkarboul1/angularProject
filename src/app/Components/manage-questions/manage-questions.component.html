@@ -15,7 +15,7 @@
     </div>
   </form>
 </div>
-<div class="card">
+<div class="card my-5">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manage questions</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let question of listQuestion | questionFilter:searchName">
+          <tr *ngFor="let question of listQuestion">
             <td class="pt-3-half" contenteditable="false">{{question.name}}</td>
             <td class="text-center">
               <span class="table-remove mr-4"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"
